@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- Link to Font Awesome library for icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<!-- Link to custom CSS file -->
+	<link rel="stylesheet" href="style.css">
+	<title>Weather APP</title>
+</head>
+<body>
+	<!-- Main container for the Weather App -->
+	<div class="weather-app">
+		<div class="container">
+			<!-- Brand title of the Weather App -->
+			<h3 class="brand">Weather APP</h3>
+			<div>
+				<!-- Display temperature -->
+				<h1 class="temp">16&#176;</h1>
+				<!-- Display city name, time, and date -->
+				<div class="city-time">
+					<h1 class="name">London</h1>
+					<small>
+						<span class="time">06:09</span>
+						<span class="date">
+							Moonday Sep 19
+						</span>
+					</small>
+				</div>
+				<!-- Display weather condition and icon -->
+				<div class="weather">
+					<img
+					    class="icon"
+                        src="./icons/day/113.png"
+                        alt="icon"
+						width="50"
+						height="50"
+                    />
+					<span class="condition">Cloudy</span>
+				</div>
+			</div>
+		</div>
+		<!-- Side panel for additional options and details -->
+		<div class="panel">
+			<!-- Form for inputting location -->
+			<form id="locationInput">
+				<input
+				    type="text"
+                    class="search"
+                    placeholder="Enter a location"
+                />
+				<button type="submit" class="submit">
+					<!-- Icon for search button -->
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+			<!-- List of predefined cities -->
+			<ul class="cities">
+				<li class="city">New York</li>
+				<li class="city">California</li>
+				<li class="city">Paris</li>
+				<li class="city">Tokyo</li>
+			</ul>
+			<!-- Details of weather condition -->
+			<ul class="details">
+				<h4>Weather Details</h4>
+				<li>
+					<span>Cloudy</span>
+					<span class="cloud">89%</span>
+				</li>
+				<li>
+					<span>Humidity</span>
+					<span class="humidity">64%</span>
+				</li>
+				<li>
+					<span>Wind</span>
+					<span class="wind">8km/h</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Link to JavaScript file for functionality -->
+	<script src="main.js"></script>
+</body>
+</html>
