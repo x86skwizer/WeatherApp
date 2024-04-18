@@ -26,13 +26,13 @@ This is a simple weather web application that allows users to check the current 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/weather-app.git
+   git clone https://github.com/x86skwizer/weatherapp.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd weather-app
+   cd weatherapp
    ```
 
 3. Open the `index.html` file in your web browser.
