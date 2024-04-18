@@ -1,4 +1,3 @@
-/*items from html*/
 const app = document.querySelector('.weather-app');
 const temp = document.querySelector('.temp');
 const dateOutput = document.querySelector('.date');
@@ -23,14 +22,15 @@ cities.forEach((city) => {
     //Change from default city to the clicked one
     cityInput = e.target.innerHTML;
     /*Function that fetches and displays
-    all the data from the Weather API*/
+    all the data from the Weather API
+    (We will write it soon) */
     fetchWeatherData();
-    //simple animation
+    //Fade out the app (simple animation)
     app.style.opacity = "0";
     });
 })
 
-/* Add submit event to the form */
+//Add submit event to the form
 form.addEventListener('submit', (e) => {
   /*If the input field (search bar)
   is empty, throw an alert*/
@@ -41,11 +41,12 @@ form.addEventListener('submit', (e) => {
   one written in the input field*/
   cityInput = search.value;
   /*Function that fetches and displays
-  all the data from the Weather API*/
+  all the data from the Weather API
+  (We will write it soon) */
   fetchWeatherData();
   //Remove all text from the input field
   search.value = "";
-  //simple animation
+  //Fage out the app (simple animation)
   app.style.opacity = "0";
 }
 
@@ -53,17 +54,19 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 });
 
-/*from a date (12 03 2021)*/
-function dayOfTheWeek (day, month, year) {
-  const weekday = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-  ];
+/*(Monday, Tuesday, Friday...) from a date (12 03 2021)
+We will use this function Later*/
+function dayOfTheWeek(day, month, year) {
+    const weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
     // Create a new Date object using the provided day, month, and year
     const date = new Date(`${month}/${day}/${year}`);
 
@@ -72,17 +75,17 @@ function dayOfTheWeek (day, month, year) {
 
     // Use the day of the week index to access the corresponding day name from the weekday array
     return weekday[dayOfWeekIndex];
-};
+}
+
 /*Function that fetches and displays
 the data from the weather API*/
 function fetchWeatherData() {
   /*Fetch the data and dynamicaly add the city name with template LitearaLs*/
-  // Replace 'YOUR_API_KEY' with your OpenWeather API key
-  const apiKey = '161605b56a64407da5501216242903&q';
   fetch(`http://api.weatherapi.com/v1/current.json?key=af45538534b443f6ac4163437241804&q=${cityInput}`)
   /* take data json and convert it to a js object*/
   .then(response => response.json())
   .then(data => {
+    console.log(data); /* printing */
 
     /*adding to page*/
     temp.innerHTML = data.current.temp_c + "&#176;";
@@ -96,7 +99,6 @@ function fetchWeatherData() {
     const time = date.substr(11);
 
     /* formatting */
-    console.log(`${dayOfTheWeek(d, m, y)}`);
     dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}, ${m} ${y}`;
     timeOutput.innerHTML = time;
 
@@ -104,7 +106,7 @@ function fetchWeatherData() {
 
     const iconId = data.current.condition.icon.substr(
       "//cdn.weatherapi.com/weather/64x64/".length);
-	  /* reformat icons*/
+      /*reformate icon !!! icons dir !!! */
       icon.src = "./icons/" + iconId;
 
       /* Add the weather details to the page*/
@@ -121,17 +123,17 @@ function fetchWeatherData() {
       if (!data.current.is_day) {
         timeOfDay = "night";
       }
-      console.log(code);
-
+	  
       if (code == 1000) {
         /*change background */
-        app.style.backgroundImage = `url(./images/${timeOfDay}/bc.jpg)`;
+        app.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`;
         /*button bg color */
         btn.style.background = "#e5ba92";
         if (timeOfDay == 'night') {
           btn.style.background = "#181e27";
         }
       }
+
       /* cloudy weather */
       else if (
         code == 1003 ||
@@ -146,14 +148,13 @@ function fetchWeatherData() {
         code == 1279 ||
         code == 1282 
       ){
-        console.log("test cloud");
-        app.style.backgroundImage = `
-          url("./images/${timeOfDay}/cloudy.jpeg")`;
-          btn.style.background ="#fa6d1b";
+        app.style.backgroundImage =
+          `url("./images/${timeOfDay}/cloudy.jpg")`;
+        btn.style.background ="#fa6d1b";
         if(timeOfDay == "night") {
         btn.style.background = "#181e27";
         }
-        /*rain*/
+        /*"And rain"*/
         } else if (
         code == 1063 ||
         code == 1069 ||
@@ -175,7 +176,7 @@ function fetchWeatherData() {
         code == 1252
         ) {
           app.style.backgroundImage = `
-          url("./images/${timeOfDay}/rainy.jpeg")`;
+          url("./images/${timeOfDay}/rainy.jpg")`;
         btn.style.background ="#647d75";
         if(timeOfDay == "night") {
         btn.style.background = "#325c80";
@@ -183,7 +184,7 @@ function fetchWeatherData() {
       } else {
         /* Snow */
         app.style.backgroundImage = `
-          url(./images/${timeOfDay}/snow.jpg)`;
+          url(./images/${timeOfDay}/snowy.jpg)`;
         btn.style.background = "#4d72aa";
         if(timeOfDay == "night") {
           btn.style.background = "#1b1b1b";
